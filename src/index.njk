@@ -1,0 +1,110 @@
+---
+layout: page.njk
+title: Setups
+pagination:
+  data: newstations
+  alias: stations
+  reverse: true
+  size: 50
+permalink: "/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber }}/{% endif %}index.html"
+eleventyNavigation:
+  key: Setups Gallery
+---
+<div class="inline-flex my-3 md:my-6">
+    {% set links = pagination.href %}
+    {% if links.previous %}
+    <a class="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l no-underline" href="{{ links.previous }}">👈 Previous 100</a>
+    {% else %}
+    <a class="bg-gray-300 hover:bg-gray-400 text-gray-500 font-bold py-2 px-4 rounded-l no-underline">👈 Previous 100</a>
+    {% endif %}
+    {% if links.next %}
+        <a class="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-r no-underline" href="{{ links.next }}">Next 100 👉</a>
+    {% else %}
+        <a class="bg-gray-300 hover:bg-gray-400 text-gray-500 font-bold py-2 px-4 rounded-r no-underline">Next 100 👉</a>
+    {% endif %}
+</div>
+<div class="max-w-auto flex flex-wrap justify-center min-h-screen">
+                <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                    <table class="min-w-full leading-normal">
+                        <thead>
+                            <tr>
+                                <th
+                                    class="px-4 py-3 border-b-2 border-gray-800 bg-gray-600 text-left font-mono font-semibold uppercase tracking-wider text-gray-200">
+                                    Setup
+                                </th>
+                                <th
+                                    class="hidden md:table-cell px-4 py-3 border-b-2 border-gray-800 bg-gray-600 text-left font-mono font-semibold text-gray-200 uppercase tracking-wider">
+                                    Author
+                                </th>
+                                <th
+                                    class="hidden md:table-cell px-4 py-3 border-b-2 border-gray-800 bg-gray-600 text-left font-mono font-semibold text-gray-200 uppercase tracking-wider">
+                                    Date
+                                </th>
+                                <th
+                                    class="hidden md:table-cell px-4 py-3 border-b-2 border-gray-800 bg-gray-600 text-left font-mono font-semibold text-gray-200 uppercase tracking-wider">
+                                    Components
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+  {% set st = stations %}
+  {% for item in st  %}
+                            <tr>
+                                <td class="px-4 py-2 border-b border-gray-200 bg-white text-sm">
+                                    <div class="flex items-start">
+                                        <div class="w-24 h-auto md:max-w-screen-md">
+                                            <a href="{{ item.id }}">
+                                            <img class="md:flex-shrink-0 rounded-sm object-cover"
+                                                src="{{item.thumbnail}}"
+                                                class="lazyload" 
+                                                alt="{{item.title}}" />
+                                            </a>
+                                        </div>
+                                        <div class="ml-3 flex flex-col md:content-around md:inline-block">
+                                            <div class="p-1">
+                                                <p class="text-gray-900 font-semibold text-sm break-words">
+                                                {{ item.title | truncate(50) }}
+                                                </p>
+                                            </div>
+                                            <div class="md:hidden">
+                                                <a href="{{item.id}}"
+                                                    class="no-underline text-xs relative inline-block px-3 py-2 font-mono font-semibold {{ 'text-gray-900' if item.amz == 0 else 'text-blue-600'  }} leading-tight">
+                                                    <span aria-hidden
+                                                        class="absolute inset-0 {{ 'bg-gray-200' if item.amz == 0 else 'bg-blue-100 border border-blue-300'  }} opacity-50 rounded-sm"></span>
+                                                    <span class="relative">{{ item.amz | length }} components</span>
+                                                </a>
+                                            </div>
+                                            <div class="p-1 text-xs text-gray-600 float-right md:hidden">
+                                            Published on <span class="font-bold">{{item.date | dateISOtoFormat('DDD') }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="hidden md:table-cell px-4 py-3 border-b border-gray-200 bg-white text-sm">
+                                    <a href="https://reddit.com/u/{{item.author}}" target="_blank" rel="noopener noreferrer" class="text-gray-900 no-underline whitespace-no-wrap">{{ item.author }}</a>
+                                </td>
+                                <td class="hidden md:table-cell px-4 py-3 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                    {{ item.date }} </p>
+                                </td>
+                                <td class="hidden md:table-cell px-4 py-3 border-b border-gray-200 bg-white text-sm">
+                                    <a  href="/{{item.id}}"
+                                        class="no-underline relative inline-block px-4 py-3 font-semibold {{ 'text-gray-900' if item.amz == 0 else 'text-green-600'  }} leading-tight">
+                                        <span aria-hidden
+                                            class="absolute inset-0 {{ 'bg-gray-200' if item.amz == 0 else 'bg-green-200'  }} opacity-50 rounded-full"></span>
+                                        <span class="relative">{{ item.amz | length }} components</span>
+                                    </a>
+                                </td>
+                            </tr>
+  {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+</div>
+{# 
+ 
+ 
+ comment that will not be printed 
+ 
+
+ #}

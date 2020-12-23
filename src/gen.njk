@@ -1,0 +1,29 @@
+---
+layout: setup.njk
+pagination:
+  data: newstations
+  size: 1
+  alias: setup
+permalink: "/{{ setup.id }}/"
+eleventyComputed:
+  title: "{{setup.title}}"
+  date: "{{setup.date}}"
+---
+<div class="font-mono relative rounded-sm m-4 p-3 sm:m-8 sm:p-6 bg-white">
+  <div>
+  <h1 class="font-bold text-3xl text-gray-600">{{setup.title}}</h1>
+  <h4 class="text-sm py-2">Submitted on <span class="font-semibold text-blue-700">{{ setup.date | dateISOtoFormat('DDD') }}</span></h4>      
+  <picture class="lazyload mx-auto">
+    <img sizes="auto" src="{{setup.img}}" data-srcset="{{setup.img}}" alt="{{setup.title}}">
+  </picture>
+  </div>
+<div class="mt-4 p-1 flex items-center">
+  <h4 class="flex-shrink-0 pr-2 leading-5 text-xl tracking-wider font-semibold uppercase text-brand-600 font-spoof">Setup components</h4>
+  <div class="flex-1 border-t-2 border-gray-200"></div>
+</div>
+<div class="divide-y mt-2 font-sans">
+  {% for item in setup.amz %}
+  <div class="py-2 flex "><a class="font-semibold text-blue-600" href="https://amazon.com/dp/{{item}}/?tag={{meta.tagsetups}}" target="_blank" rel="nofollow noopener">Check price of product #{{loop.index}} ⟶</a></div>
+  {% endfor %}
+</div>
+</div>
