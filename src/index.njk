@@ -51,7 +51,7 @@ eleventyNavigation:
                             <tr>
                                 <td class="px-4 py-2 sm:px-2 sm:py-1 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex space-x-4 items-start">
-                                        <div class="flex-none w-36 relative md:p-1">
+                                        <div class="flex-none w-24 md:w-36 relative md:p-1">
                                             <a href="/{{ item.id }}">
                                             <img class="inset-0 w-full h-full object-cover"
                                                 src="{{item.thumbnail}}"
@@ -60,10 +60,10 @@ eleventyNavigation:
                                             </a>
                                         </div>
                                         <div class="ml-4 md:hidden">
-                                              <h3 class="flex-auto text-xl font-semibold">
+                                              <h3 class="flex-auto text-lg font-semibold">
                                                 {{item.title | truncate(50)}}
                                               </h3>
-                                              <div class="font-semibold text-gray-500">
+                                              <div class="my-2 font-semibold text-gray-500">
                                               This setup has 
                                                 <span 
                                                  class="{{'font-bold' if item.amz == 0 else 'bg-black text-white p-1'}}">
@@ -73,7 +73,7 @@ eleventyNavigation:
                                                 {{item.date | dateISOtoFormat('DDD') }}
                                               </div>
                                           <div class="flex-auto flex space-x-3 py-3">
-                                                <a class="p-2 w-2/3 flex items-center justify-center rounded-md bg-blue-100 text-blue-800 font-semibold" href="/{{item.id}}">Setup Details</a>
+                                                <a class="p-2 w-full flex items-center justify-center rounded-md bg-blue-100 text-blue-800 font-semibold" href="/{{item.id}}">Setup Details</a>
                                             </div>
                                     </div>
                                         <div class="hidden md:flex md:flex-wrap">          
