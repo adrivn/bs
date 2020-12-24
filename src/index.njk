@@ -53,7 +53,7 @@ eleventyNavigation:
                                 <td class="px-4 py-2 border-b border-gray-200 bg-white text-sm">
                                     <div class="flex items-start">
                                         <div class="w-24 h-auto md:max-w-screen-md">
-                                            <a href="{{ item.id }}">
+                                            <a href="/{{ item.id }}">
                                             <img class="md:flex-shrink-0 rounded-sm object-cover"
                                                 src="{{item.thumbnail}}"
                                                 class="lazyload" 
@@ -67,7 +67,7 @@ eleventyNavigation:
                                                 </p>
                                             </div>
                                             <div class="md:hidden">
-                                                <a href="{{item.id}}"
+                                                <a href="/{{item.id}}"
                                                     class="no-underline text-xs relative inline-block px-3 py-2 font-mono font-semibold {{ 'text-gray-900' if item.amz == 0 else 'text-blue-600'  }} leading-tight">
                                                     <span aria-hidden
                                                         class="absolute inset-0 {{ 'bg-gray-200' if item.amz == 0 else 'bg-blue-100 border border-blue-300'  }} opacity-50 rounded-sm"></span>
