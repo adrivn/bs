@@ -12,35 +12,35 @@ eleventyNavigation:
 <div class="inline-flex my-3 md:my-6">
     {% set links = pagination.href %}
     {% if links.previous %}
-    <a class="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-l no-underline" href="{{ links.previous }}">👈 Previous {{pagination.size}}</a>
+    <a class="border border-black bg-white hover:bg-gray-100 font-bold py-2 px-4 no-underline" href="{{ links.previous }}">👈 Previous {{pagination.size}}</a>
     {% else %}
-    <a class="bg-gray-300 hover:bg-gray-400 text-gray-500 font-bold py-2 px-4 rounded-l no-underline">👈 Previous {{pagination.size}}</a>
+    <a class="border border-black hover:bg-gray-100 font-bold py-2 px-4 no-underline bg-gray-100 text-gray-400">👈 Previous {{pagination.size}}</a>
     {% endif %}
     {% if links.next %}
-        <a class="bg-blue-600 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded-r no-underline" href="{{ links.next }}">Next {{pagination.size}} 👉</a>
+        <a class="border border-black bg-white hover:bg-gray-100 font-bold py-2 px-4 no-underline" href="{{ links.next }}">Next {{pagination.size}} 👉</a>
     {% else %}
-        <a class="bg-gray-300 hover:bg-gray-400 text-gray-500 font-bold py-2 px-4 rounded-r no-underline">Next {{pagination.size}} 👉</a>
+        <a class="border border-black hover:bg-gray-100 font-bold py-2 px-4 no-underline bg-gray-100 text-gray-400">Next {{pagination.size}} 👉</a>
     {% endif %}
 </div>
 <div class="max-w-auto flex flex-wrap justify-center min-h-screen">
-                <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                <div class="inline-block min-w-full overflow-hidden">
                     <table class="min-w-full leading-normal">
                         <thead>
                             <tr>
                                 <th
-                                    class="px-4 py-3 border-b-2 border-gray-800 bg-gray-600 text-left font-mono font-semibold uppercase tracking-wider text-gray-200">
+                                    class="px-4 py-3 border border-black bg-black text-white text-left font-serif font-semibold uppercase tracking-wider">
                                     Setup
                                 </th>
                                 <th
-                                    class="hidden md:table-cell px-4 py-3 border-b-2 border-gray-800 bg-gray-600 text-left font-mono font-semibold text-gray-200 uppercase tracking-wider">
+                                    class="hidden md:table-cell px-4 py-3 border border-black bg-black text-white text-left font-serif font-semibold uppercase tracking-wider">
                                     Author
                                 </th>
                                 <th
-                                    class="hidden md:table-cell px-4 py-3 border-b-2 border-gray-800 bg-gray-600 text-left font-mono font-semibold text-gray-200 uppercase tracking-wider">
+                                    class="hidden md:table-cell px-4 py-3 border border-black bg-black text-white text-left font-serif font-semibold uppercase tracking-wider">
                                     Date
                                 </th>
                                 <th
-                                    class="hidden md:table-cell px-4 py-3 border-b-2 border-gray-800 bg-gray-600 text-left font-mono font-semibold text-gray-200 uppercase tracking-wider">
+                                    class="hidden md:table-cell px-4 py-3 border border-black bg-black text-white text-left font-serif font-semibold uppercase tracking-wider">
                                     Components
                                 </th>
                             </tr>
@@ -49,7 +49,7 @@ eleventyNavigation:
   {% set st = stations %}
   {% for item in st  %}
                             <tr>
-                                <td class="px-4 py-2 sm:px-2 sm:py-1 border-b border-gray-200 bg-white text-sm">
+                                <td class="px-4 py-2 sm:px-2 sm:py-1 border-b border-l border-black bg-white text-sm">
                                     <div class="flex space-x-4 items-start">
                                         <div class="flex-none w-24 md:w-36 relative md:p-1">
                                             <a href="/{{ item.id }}">
@@ -60,9 +60,9 @@ eleventyNavigation:
                                             </a>
                                         </div>
                                         <div class="ml-4 md:hidden">
-                                              <h3 class="flex-auto text-lg font-semibold">
-                                                {{item.title | truncate(50)}}
-                                              </h3>
+                                              <span class="flex-auto text-lg font-semibold">
+                                                {{item.title | truncate(70)}}
+                                              </span>
                                               <div class="my-2 font-semibold text-gray-500">
                                               This setup has 
                                                 <span 
@@ -77,20 +77,20 @@ eleventyNavigation:
                                             </div>
                                     </div>
                                         <div class="hidden md:flex md:flex-wrap">          
-                                              <h3 class="flex-auto font-semibold text-gray-700">
+                                              <span class="flex-auto font-semibold text-gray-700">
                                                 {{item.title | truncate(50)}}
-                                              </h3>
+                                              </span>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="hidden md:table-cell px-4 py-3 border-b border-gray-200 bg-white text-sm">
+                                <td class="hidden md:table-cell px-4 py-3 border-b border-black bg-white text-sm">
                                     <a href="https://reddit.com/u/{{item.author}}" target="_blank" rel="noopener noreferrer" class="text-gray-900 no-underline whitespace-no-wrap">{{ item.author }}</a>
                                 </td>
-                                <td class="hidden md:table-cell px-4 py-3 border-b border-gray-200 bg-white text-sm">
+                                <td class="hidden md:table-cell px-4 py-3 border-b border-black bg-white text-sm">
                                     <p class="text-gray-900 whitespace-no-wrap">
                                     {{ item.date | dateISOtoFormat('DDD')}} </p>
                                 </td>
-                                <td class="hidden md:table-cell px-4 py-3 border-b border-gray-200 bg-white text-sm">
+                                <td class="hidden md:table-cell px-4 py-3 border-b border-r border-black bg-white text-sm">
                                     <a  href="/{{item.id}}"
                                         class="no-underline relative inline-block px-4 py-3 font-semibold {{ 'text-gray-900' if item.amz == 0 else 'text-green-600'  }} leading-tight">
                                         <span aria-hidden

@@ -18,7 +18,7 @@
   Short description of the document (limit to 150 characters)
   This content *may* be used as a part of search engine results. 
 -->
-<meta name="description" content="{% if description %}{{ description }}{% else %}{{ meta.description }}{% endif %}">
+<meta name="description" content="{% if description %}{{ description }}{% else %}{{ site.description }}{% endif %}">
 
 <!-- Control the behavior of search engine crawling and indexing -->
 <meta name="robots" content="index,follow"><!-- All Search Engines -->
@@ -36,9 +36,9 @@
 <meta name="format-detection" content="telephone=no">
 
 <!-- Helps prevent duplicate content issues -->
-<link rel="canonical" href="{{ meta.url }}{{ page.url }}">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
 
-<title>{% if title %}{{ title }} - {% endif %}{{ meta.title }}</title>
+<title>{% if title %}{{ title }} - {% endif %}{{ site.title }}</title>
 
 <!-- Links to information about the author(s) of the document -->
 <link rel="author" href="humans.txt">
@@ -49,21 +49,21 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
 
 <!-- Facebook Open Graph meta -->
-<meta property="og:url" content="{{ meta.url}}{{ page.url }}">
+<meta property="og:url" content="{{ site.url}}{{ page.url }}">
 <meta property="og:type" content="website">
-<meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ meta.title }}{% endif %}">
+<meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.title }}{% endif %}">
 {% if site.meta_data.default_social_image or featured_image %}
-  <meta property="og:image" content="{% if env == 'production' %}{{ meta.url }}{% endif %}{% if featured_image  %}{{ featured_image }}{% else %}{{ meta.meta_data.default_social_image }}{% endif %}" />
+  <meta property="og:image" content="{% if site.env == 'production' %}{{ site.url }}{% endif %}{% if featured_image  %}{{ featured_image }}{% else %}{{ site.meta_data.opengraph_default }}{% endif %}" />
 {% endif %}
-<meta property="og:description" content="{% if description %}{{ description }}{% else %}{{ meta.description }}{% endif %}" />
-<meta property="og:site_name" content="{{ meta.title }}">
-<meta property="og:locale" content="{{meta.locale}}">
-<meta property="article:author" content="{{ meta.author }}">
+<meta property="og:description" content="{% if description %}{{ description }}{% else %}{{ site.description }}{% endif %}" />
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="{{ site.author }}">
 
 <!-- Twitter Open Graph meta -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="{{ meta.meta_data.twitter }}">
-<meta name="twitter:creator" content="{{ meta.meta_data.twitter }}">
+<meta name="twitter:site" content="{{ site.meta_data.twitter }}">
+<meta name="twitter:creator" content="{{ site.meta_data.twitter }}">
 
 <!-- disallow Twitter from using your site's info for personalization purposes -->
 <meta name="twitter:dnt" content="on">

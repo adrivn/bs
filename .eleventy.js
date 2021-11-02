@@ -1,40 +1,46 @@
-const filters = require('./utils/filters')
+const filters = require('./utils/filters.js')
+const transforms = require('./utils/transforms.js')
+const collections = require('./utils/collections.js')
 const pluginRss = require('@11ty/eleventy-plugin-rss')
 const pluginNavigation = require('@11ty/eleventy-navigation')
 
-module.exports = (config) => {
-  
-  //  Adding filters
+module.exports = function (eleventyConfig) {
+	// Folders to copy to build dir (See. 1.1)
+	eleventyConfig.addPassthroughCopy("src/static");
+	eleventyConfig.addPassthroughCopy("src/_img");
+	eleventyConfig.addPlugin(pluginRss)
+	eleventyConfig.addPlugin(pluginNavigation)
 
-  Object.keys(filters).forEach((filterName) => {
-    config.addFilter(filterName, filters[filterName])
-  })
+	// Filters 
+	Object.keys(filters).forEach((filterName) => {
+		eleventyConfig.addFilter(filterName, filters[filterName])
+	})
 
-  //  Adding plugins
+	// Transforms
+	Object.keys(transforms).forEach((transformName) => {
+		eleventyConfig.addTransform(transformName, transforms[transformName])
+	})
 
-  config.addPlugin(pluginRss)
-  config.addPlugin(pluginNavigation)
+	// Collections
+	Object.keys(collections).forEach((collectionName) => {
+		eleventyConfig.addCollection(collectionName, collections[collectionName])
+	})
 
-  config.addPassthroughCopy({ 'src/assets': 'assets' })
-  config.setBrowserSyncConfig({
-    files: ['dist/**/*'],
-    open: true,
-    // Tweak for Turbolinks & Browserstack Compatibility
-    snippetOptions: {
-      rule: {
-        match: /<\/head>/i,
-        fn: function (snippet, match) {
-          return snippet + match;
-        }
-      }
-    }
-  })
-  config.setDataDeepMerge(true)
+	// This allows Eleventy to watch for file changes during local development.
+	eleventyConfig.setUseGitIgnore(false);
 
-  return {
-    dir: {
-      input: 'src',
-      output: 'dist',
-    },
-  }
-}
+	return {
+		dir: {
+			input: "src/",
+			output: "dist",
+			includes: "_includes",
+			layouts: "_layouts",
+			img: "_img",
+		},
+		templateFormats: ["html", "md", "njk"],
+		htmlTemplateEngine: "njk",
+
+		// 1.1 Enable eleventy to pass dirs specified above
+		passthroughFileCopy: true
+	};
+};
