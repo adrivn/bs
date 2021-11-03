@@ -10,71 +10,75 @@ eleventyComputed:
   date: "{{setup.date}}"
 ---
 <div class="bg-white border-black border">
-  <div class="mx-auto px-4 grid items-center grid-cols-2 gap-y-4 gap-x-6 sm:px-6 sm:py-32 lg:max-w-8xl lg:px-8 lg:grid-cols-2">
+  <div class="mx-auto px-4 grid items-center grid-cols-1 gap-y-4 gap-x-6 sm:px-6 sm:py-32 lg:max-w-8xl lg:px-8">
     <div>
       <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{setup.title}}</h2>
       <p class="mt-4 text-gray-500">{{setup.date | dateISOtoFormat("DDD")}}</p>
-      <p class="mt-2"><span class="font-semibold">Author:</span> /u/{{setup.author}}</p>
-
-      <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-        {% for item in products %}
-        {% if setup.id == item.id %}
-        <div class="border border-black flex items-center w-3/4 md:w-full mx-auto">
-          <div>
-          <img class="max-w-96" src="/_img/products/{{item.root.imgurl}}" alt="{{item.root.Title}}">
-          </div>
-          <div class="p-3">
-            <h4 class="font-semibold text-gray-700">{{item.root.Title | truncate(80)}}</h4>
-            <span class="text-yellow-500 flex">
-              {% set estrellas = item.root.Rating | getRating %}
-              {% for i in estrellas %}
-              {{i | safe}}
-              {% endfor %}
-              </span>
-            <small>
-            {% if item.root.NumberOfReviews == null %}
-            No ratings for this item  
-            {% else %}
-            Based on {{item.root.NumberOfReviews}}
-            {% endif %}
-            </small>
-            <hr class="my-2">
-            <div class="flex justify-start mx-auto rounded p-1 bg-red-100">
-            <a class="font-bold text-red-500" href="https://amazon.com/dp/{{item.root.asin}}/?tag={{meta.tagsetups}}" target="_blank" rel="nofollow noopener">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-              <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-            </svg> Check price on Amazon</a>
-            </div>
-          </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-      </dl>
+      <p class="mt-2">
+        <span class="font-semibold">Author:</span>
+        /u/{{setup.author}}</p>
+      <a href="#" class="mt-2 modal-open"><img src="https://i.redd.it/xl98lp6s1zl71.jpg" alt="New house, new setup!" class="bg-gray-100 rounded-lg"></a>
     </div>
-      <a href="#" class="modal-open"><img src="{{setup.img}}" alt="{{setup.title}}" class="bg-gray-100 rounded-lg"></a>
+    <h3 class="text-gray-400 text-xl font-serif font-semibold">Products in this setup</h3>
+    <dl class="mt-4 grid gap-x-4 gap-y-5">
+      {% for item in products %}
+        {% if setup.id == item.id %}
+          <div class="border border-black grid grid-cols-2 items-center w-full lg:w-1/2 mx-auto">
+            <div class="col-span-1">
+              <img class="max-w-96 mt-3 ml-3" src="/_img/products/{{item.root.imgurl}}" alt="{{item.root.Title}}">
+            </div>
+            <div class="p-3 col-span-1">
+              <h4 class="font-semibold text-xl text-gray-700">{{item.root.Title | truncate(100)}}</h4>
+              <span class="text-yellow-500 flex">
+                {% set estrellas = item.root.Rating | getRating %}
+                {% for i in estrellas %}
+                  {{i | safe}}
+                {% endfor %}
+              </span>
+              <small>
+                {% if item.root.NumberOfReviews == null %}
+                  No ratings for this item
+                {% else %}
+                  Based on
+                  {{item.root.NumberOfReviews}}
+                {% endif %}
+              </small>
+              </div>
+              <div class="grid col-span-2 m-4 justify-center rounded p-1 bg-red-100">
+                <a class="font-bold text-red-500" href="https://amazon.com/dp/{{item.root.asin}}/?tag={{meta.tagsetups}}" target="_blank" rel="nofollow noopener">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
+                    <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
+                    <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
+                  </svg>
+                  Check price on Amazon</a>
+              </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </dl>
   </div>
+</div>
 </div>
 
 {# Modal section for the image #}
 
-  <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
-    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
-    
-    <div class="modal-container bg-white w-2/3 mx-auto rounded shadow-lg z-50 overflow-y-auto">
-      
-      <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
-        <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-          <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
-        </svg>
-        <span class="text-sm">(Esc)</span>
-      </div>
+<div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
+<div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
 
-      <!-- Add margin if you want to see some of the overlay behind the modal-->
-      <div class="modal-content">
-      <img src="{{setup.img}}" alt="{{setup.title}}">
-      </div>
-        
-      </div>
-    </div>
+<div class="modal-container bg-white w-2/3 mx-auto rounded shadow-lg z-50 overflow-y-auto">
+
+  <div class="modal-close absolute top-0 right-0 cursor-pointer flex flex-col items-center mt-4 mr-4 text-white text-sm z-50">
+    <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewbox="0 0 18 18">
+      <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+    </svg>
+    <span class="text-sm">(Esc)</span>
   </div>
+
+  <!-- Add margin if you want to see some of the overlay behind the modal-->
+  <div class="modal-content">
+    <img src="{{setup.img}}" alt="{{setup.title}}">
+  </div>
+
+</div>
+</div>
+</div>
