@@ -17,30 +17,32 @@ eleventyComputed:
       <p class="mt-2"><span class="font-semibold">Author:</span> /u/{{setup.author}}</p>
 
       <dl class="mt-16 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 sm:gap-y-16 lg:gap-x-8">
-        {% for item in products %}
-        {% if setup.id == item.id %}
+        {% for item in amazon_products %}
+        {% for asin in setup.amz %}
+          
+        {% if item.asin == asin %}
         <div class="border border-black flex items-center w-3/4 md:w-full mx-auto">
           <div>
-          <img class="max-w-96" src="/_img/products/{{item.root.imgurl}}" alt="{{item.root.Title}}">
+          <img class="max-w-96" src="/_img/products/{{item.asin}}.jpg" alt="{{item.Title}}">
           </div>
           <div class="p-3">
-            <h4 class="font-semibold text-gray-700">{{item.root.Title | truncate(80)}}</h4>
+            <h4 class="font-semibold text-gray-700">{{item.Title | truncate(80)}}</h4>
             <span class="text-yellow-500 flex">
-              {% set estrellas = item.root.Rating | getRating %}
+              {% set estrellas = item.Rating | getRating %}
               {% for i in estrellas %}
               {{i | safe}}
               {% endfor %}
               </span>
             <small>
-            {% if item.root.NumberOfReviews == null %}
+            {% if item.NumberOfReviews == null %}
             No ratings for this item  
             {% else %}
-            Based on {{item.root.NumberOfReviews}}
+            Based on {{item.NumberOfReviews}}
             {% endif %}
             </small>
             <hr class="my-2">
             <div class="flex justify-start mx-auto rounded p-1 bg-red-100">
-            <a class="font-bold text-red-500" href="https://amazon.com/dp/{{item.root.asin}}/?tag={{meta.tagsetups}}" target="_blank" rel="nofollow noopener">
+            <a class="font-bold text-red-500" href="https://amazon.com/dp/{{item.asin}}/?tag={{meta.tagsetups}}" target="_blank" rel="nofollow noopener">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
               <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
@@ -49,6 +51,7 @@ eleventyComputed:
           </div>
         </div>
         {% endif %}
+        {% endfor %}
         {% endfor %}
       </dl>
     </div>
