@@ -12,14 +12,14 @@ eleventyNavigation:
 <div class="inline-flex my-3 md:my-6">
     {% set links = pagination.href %}
     {% if links.previous %}
-    <a class="border border-black bg-white hover:bg-gray-100 font-bold py-2 px-4 no-underline" href="{{ links.previous }}">👈 Previous {{pagination.size}}</a>
+    <a class="border border-black bg-white hover:bg-gray-100 font-bold font-mono py-2 px-4 no-underline" href="{{ links.previous }}">👈 Previous {{pagination.size}}</a>
     {% else %}
-    <a class="border border-black hover:bg-gray-100 font-bold py-2 px-4 no-underline bg-gray-100 text-gray-400">👈 Previous {{pagination.size}}</a>
+    <a class="border border-black hover:bg-gray-100 font-bold py-2 px-4 no-underline font-mono bg-gray-100 text-gray-400">👈 Previous {{pagination.size}}</a>
     {% endif %}
     {% if links.next %}
-        <a class="border border-black bg-white hover:bg-gray-100 font-bold py-2 px-4 no-underline" href="{{ links.next }}">Next {{pagination.size}} 👉</a>
+        <a class="border border-black bg-white hover:bg-gray-100 font-bold py-2 px-4 font-mono no-underline" href="{{ links.next }}">Next {{pagination.size}} 👉</a>
     {% else %}
-        <a class="border border-black hover:bg-gray-100 font-bold py-2 px-4 no-underline bg-gray-100 text-gray-400">Next {{pagination.size}} 👉</a>
+        <a class="border border-black hover:bg-gray-100 font-bold py-2 px-4 no-underline font-mono bg-gray-100 text-gray-400">Next {{pagination.size}} 👉</a>
     {% endif %}
 </div>
 <div class="max-w-auto flex flex-wrap justify-center min-h-screen">
@@ -28,19 +28,19 @@ eleventyNavigation:
                         <thead>
                             <tr>
                                 <th
-                                    class="px-4 py-3 border border-black bg-black text-white text-left font-serif font-semibold uppercase tracking-wider">
+                                    class="px-4 py-3 border border-black bg-black text-white text-left font-mono font-semibold uppercase tracking-wider">
                                     Setup
                                 </th>
                                 <th
-                                    class="hidden md:table-cell px-4 py-3 border border-black bg-black text-white text-left font-serif font-semibold uppercase tracking-wider">
+                                    class="hidden md:table-cell px-4 py-3 border border-black bg-black text-white text-left font-mono font-semibold uppercase tracking-wider">
                                     Author
                                 </th>
                                 <th
-                                    class="hidden md:table-cell px-4 py-3 border border-black bg-black text-white text-left font-serif font-semibold uppercase tracking-wider">
+                                    class="hidden md:table-cell px-4 py-3 border border-black bg-black text-white text-left font-mono font-semibold uppercase tracking-wider">
                                     Date
                                 </th>
                                 <th
-                                    class="hidden md:table-cell px-4 py-3 border border-black bg-black text-white text-left font-serif font-semibold uppercase tracking-wider">
+                                    class="hidden md:table-cell px-4 py-3 border border-black bg-black text-white text-left font-mono font-semibold uppercase tracking-wider">
                                     Components
                                 </th>
                             </tr>
@@ -61,16 +61,16 @@ eleventyNavigation:
                                             </a>
                                         </div>
                                         <div class="ml-4 md:hidden">
-                                              <span class="flex-auto text-lg font-semibold">
+                                              <span class="flex-auto">
                                                 {{item.title | truncate(70)}}
                                               </span>
-                                              <div class="my-2 font-semibold text-gray-500">
+                                              <div class="my-2 text-gray-500">
                                               This setup has 
                                                 <span 
                                                  class="{{'font-bold' if item.amz == 0 else 'bg-black text-white p-1'}}">
                                                  {{ products | length }}</span> products inside
                                               </div>
-                                              <div class="w-full flex-none text-sm font-medium text-gray-500 mt-2">
+                                              <div class="w-full flex-none text-sm text-gray-500 mt-2">
                                                 {{item.date | dateISOtoFormat('DDD') }}
                                               </div>
                                           <div class="flex-auto flex space-x-3 py-3">
@@ -78,7 +78,7 @@ eleventyNavigation:
                                             </div>
                                     </div>
                                         <div class="hidden md:flex md:flex-wrap">          
-                                              <span class="flex-auto font-semibold text-gray-700">
+                                              <span class="flex-auto text-gray-700">
                                                 {{item.title | truncate(50)}}
                                               </span>
                                         </div>
@@ -93,7 +93,7 @@ eleventyNavigation:
                                 </td>
                                 <td class="hidden md:table-cell px-4 py-3 border-b border-r border-black bg-white text-sm">
                                     <a  href="/{{item.id}}"
-                                        class="no-underline relative inline-block px-4 py-3 font-semibold {{ 'text-gray-900' if item.amz == 0 else 'text-green-600'  }} leading-tight">
+                                        class="no-underline relative inline-block font-semibold px-4 py-3 {{ 'text-gray-900' if item.amz == 0 else 'text-green-600'  }} leading-tight">
                                         <span aria-hidden
                                             class="absolute inset-0 {{ 'bg-gray-200' if item.amz == 0 else 'bg-green-200'  }} opacity-50 rounded-full"></span>
                                         <span class="relative">{{ products | length }} components</span>

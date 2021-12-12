@@ -1,8 +1,9 @@
 module.exports = {
 	theme: {
 		fontFamily: {
-			'sans': ['Satoshi-Regular', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-			'serif': ['ClashDisplay-Medium','ui-serif','system-ui','serif'],
+			'sans': ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+			'mono': ['Roboto Mono', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+			'serif': ['ui-serif','system-ui','serif'],
 		},
 		extend: {
 			colors: {
@@ -20,10 +21,6 @@ module.exports = {
 			}
 		},
 	},
-	variants: {},
 	plugins: [],
-	purge: process.env.NODE_ENV === 'production' ? {
-		enabled: true,
-		content: ['src/**/*.njk', 'src/**/*.js'],
-	} : {}
+	content: ['src/**/*.njk', 'src/**/*.js']
 }

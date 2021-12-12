@@ -10,17 +10,17 @@ eleventyComputed:
   date: "{{setup.date}}"
 ---
 <div class="bg-white border-black border">
-  <div class="mx-auto px-4 grid items-center grid-cols-1 gap-y-4 gap-x-6 sm:px-6 sm:py-32 lg:max-w-8xl lg:px-8">
-    <div>
-      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{setup.title}}</h2>
-      <p class="mt-4 text-gray-500">{{setup.date | dateISOtoFormat("DDD")}}</p>
+  <div class="mx-auto px-4 grid items-center grid-cols-1 gap-y-2 gap-x-6 sm:px-6 sm:py-8 lg:max-w-8xl lg:px-8">
+    <div class="p-2">
+      <h2 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{setup.title}}</h2>
+      <p class="mt-4 text-gray-500 text-s">{{setup.date | dateISOtoFormat("DDD")}}</p>
       <p class="mt-2">
         <span class="font-semibold">Author:</span>
         /u/{{setup.author}}</p>
-      <a href="#" class="mt-2 modal-open"><img src="{{setup.img}}" alt="{{setup.title}}" class="bg-gray-100 rounded-lg"></a>
+      <a href="#" class="mt-2 modal-open"><img src="{{setup.img}}" alt="{{setup.title}}" class="bg-gray-100 rounded-lg my-2"></a>
     </div>
-    <h3 class="text-gray-400 text-xl font-serif font-semibold">Products in this setup</h3>
-    <dl class="mt-4 grid gap-x-4 gap-y-5">
+    <h3 class="text-gray-400 text-xl font-semibold">Products in this setup</h3>
+    <dl class="my-2 grid gap-x-4 gap-y-5">
       {% set products = setup.products %}
       {% for item in products %}
           <div class="border border-black grid grid-cols-2 items-center w-full lg:w-1/2 mx-auto">
@@ -28,7 +28,7 @@ eleventyComputed:
               <img class="max-w-1/4 p-4" src="/_img/products/{{item.asin}}.jpg" alt="{{item.Title}}">
             </div>
             <div class="p-3 col-span-1">
-              <h4 class="font-semibold text-xl text-gray-700">{{item.Title | truncate(100)}}</h4>
+              <h4 class="font-semibold md:text-xl text-gray-700">{{item.Title | truncate(100)}}</h4>
               <span class="text-yellow-500 flex">
                 {% set estrellas = item.Rating | getRating %}
                 {% for i in estrellas %}
@@ -44,14 +44,15 @@ eleventyComputed:
                 {% endif %}
               </small>
               </div>
-              <div class="grid col-span-2 m-4 justify-center rounded p-1 bg-red-100">
-                <a class="font-bold text-red-500" href="https://amazon.com/dp/{{item.asin}}/?tag={{meta.tagsetups}}" target="_blank" rel="nofollow noopener">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
+              <a class="col-span-2" href="https://amazon.com/dp/{{item.asin}}/?tag={{meta.tagsetups}}" target="_blank" rel="nofollow noopener">
+              <div class="flex m-4 p-4 justify-center rounded text-red-500 bg-red-100">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="inline-block h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
                     <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
                     <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
                   </svg>
-                  Check price on Amazon</a>
+                  <span class="font-bold align-middle">Check price on Amazon</span>
               </div>
+              </a>
           </div>
       {% endfor %}
     </dl>
