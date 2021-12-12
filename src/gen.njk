@@ -28,24 +28,42 @@ eleventyComputed:
               <img class="max-w-1/4 p-4" src="/_img/products/{{item.asin}}.jpg" alt="{{item.Title}}">
             </div>
             <div class="p-3 col-span-1">
+<<<<<<< HEAD
               <h4 class="font-semibold text-xl text-gray-700">{{item.Title | truncate(100)}}</h4>
               <span class="text-yellow-500 flex">
                 {% set estrellas = item.Rating | getRating %}
+=======
+              <h4 class="font-semibold text-xl text-gray-700">{{item.root.Title | truncate(100)}}</h4>
+              <span class="text-yellow-500 flex">
+                {% set estrellas = item.root.Rating | getRating %}
+>>>>>>> 5b95ce7009deaf73d8d3f3460d5363f6006bf106
                 {% for i in estrellas %}
                   {{i | safe}}
                 {% endfor %}
               </span>
               <small>
+<<<<<<< HEAD
                 {% if item.NumberOfReviews == null %}
                   No ratings for this item
                 {% else %}
                   Based on
                   {{item.NumberOfReviews}}
+=======
+                {% if item.root.NumberOfReviews == null %}
+                  No ratings for this item
+                {% else %}
+                  Based on
+                  {{item.root.NumberOfReviews}}
+>>>>>>> 5b95ce7009deaf73d8d3f3460d5363f6006bf106
                 {% endif %}
               </small>
               </div>
               <div class="grid col-span-2 m-4 justify-center rounded p-1 bg-red-100">
+<<<<<<< HEAD
                 <a class="font-bold text-red-500" href="https://amazon.com/dp/{{item.asin}}/?tag={{meta.tagsetups}}" target="_blank" rel="nofollow noopener">
+=======
+                <a class="font-bold text-red-500" href="https://amazon.com/dp/{{item.root.asin}}/?tag={{meta.tagsetups}}" target="_blank" rel="nofollow noopener">
+>>>>>>> 5b95ce7009deaf73d8d3f3460d5363f6006bf106
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewbox="0 0 20 20" fill="currentColor">
                     <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"/>
                     <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"/>
@@ -53,11 +71,24 @@ eleventyComputed:
                   Check price on Amazon</a>
               </div>
           </div>
+<<<<<<< HEAD
       {% endfor %}
     </dl>
   </div>
 </div>
 </div>
+=======
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+      </dl>
+    </div>
+      <a href="#" class="modal-open"><img src="{{setup.img}}" alt="{{setup.title}}" class="bg-gray-100 rounded-lg"></a>
+  </div>
+</div>
+</div>
+
+>>>>>>> 5b95ce7009deaf73d8d3f3460d5363f6006bf106
 {# Modal section for the image #}
 
 <div class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center">
