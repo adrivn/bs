@@ -3,6 +3,7 @@ const transforms = require('./utils/transforms.js')
 const collections = require('./utils/collections.js')
 const pluginRss = require('@11ty/eleventy-plugin-rss')
 const pluginNavigation = require('@11ty/eleventy-navigation')
+const schema = require("@quasibit/eleventy-plugin-schema");
 
 module.exports = function (eleventyConfig) {
 	// Folders to copy to build dir (See. 1.1)
@@ -10,6 +11,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("src/_img");
 	eleventyConfig.addPlugin(pluginRss)
 	eleventyConfig.addPlugin(pluginNavigation)
+	eleventyConfig.addPlugin(schema);
 
 	// Filters 
 	Object.keys(filters).forEach((filterName) => {
