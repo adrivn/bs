@@ -4,16 +4,15 @@ pagination:
   data: newstations
   size: 1
   alias: setup
-permalink: "/{{ setup.id }}/"
+permalink: "/setup/{{ setup.id }}/"
 eleventyComputed:
   title: "{{setup.title}}"
   date: "{{setup.date}}"
 ---
-<div class="bg-white border-black border">
   <div class="mx-auto px-4 grid items-center grid-cols-1 gap-y-2 gap-x-6 sm:px-6 sm:py-8 lg:max-w-8xl lg:px-8">
     <div class="p-2">
-      <h2 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">{{setup.title}}</h2>
-      <p class="mt-4 text-gray-500 text-s">{{setup.date | dateISOtoFormat("DDD")}}</p>
+      <h2 class="text-lg font-bold tracking-tight text-gray-900 sm:text-2xl">{{setup.title}}</h2>
+      <p class="mt-4 text-gray-500 text-s"><time datetime="{{setup.date}}">{{setup.date | dateISOtoFormat("DDD")}}</time></p>
       <p class="mt-2">
         <span class="font-semibold">Author:</span>
         /u/{{setup.author}}</p>
@@ -78,6 +77,5 @@ eleventyComputed:
     <img src="{{setup.img}}" alt="{{setup.title}}">
   </div>
 
-</div>
 </div>
 </div>

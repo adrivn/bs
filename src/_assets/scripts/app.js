@@ -1,4 +1,6 @@
-console.log(`I was loaded at ${Date(Date.now()).toString()}`);
+import Alpine from "alpinejs"
+window.Alpine = Alpine
+Alpine.start()
 
 var openmodal = document.querySelectorAll('.modal-open')
 for (var i = 0; i < openmodal.length; i++) {

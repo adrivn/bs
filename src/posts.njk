@@ -1,0 +1,14 @@
+---
+layout: page
+title: Articles
+pagination:
+  data: collections.posts
+  alias: posts
+  size: 10
+permalink: "/posts/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber }}/{% endif %}index.html"
+eleventyNavigation:
+  key: Articles
+---
+{% for i in posts %}
+    <p>The post #{{loop.index}} is named: <a href="{{i.url}}">{{ i.data.title }}</a></p>
+{% endfor %}

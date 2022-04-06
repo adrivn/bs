@@ -1,10 +1,10 @@
 ---
-layout: page.njk
+layout: page
 title: Setups
 pagination:
   data: newstations
   alias: stations
-  size: 50
+  size: 20
 permalink: "/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber }}/{% endif %}index.html"
 eleventyNavigation:
   key: Setups Gallery
@@ -33,15 +33,7 @@ eleventyNavigation:
                                 </th>
                                 <th
                                     class="hidden md:table-cell px-4 py-3 border border-black bg-black text-white text-left font-mono font-semibold uppercase tracking-wider">
-                                    Author
-                                </th>
-                                <th
-                                    class="hidden md:table-cell px-4 py-3 border border-black bg-black text-white text-left font-mono font-semibold uppercase tracking-wider">
-                                    Date
-                                </th>
-                                <th
-                                    class="hidden md:table-cell px-4 py-3 border border-black bg-black text-white text-left font-mono font-semibold uppercase tracking-wider">
-                                    Components
+                                    Details
                                 </th>
                             </tr>
                         </thead>
@@ -49,8 +41,8 @@ eleventyNavigation:
   {% set st = stations %}
   {% for item in st  %}
   {% set products = item.products %}
-                            <tr>
-                                <td class="px-4 py-2 sm:px-2 sm:py-1 border-b border-l border-black bg-white text-sm">
+                            <tr class="border border-black md:border-b bg-white">
+                                <td class="px-4 py-2 sm:px-2 sm:py-1">
                                     <div class="flex space-x-4 items-start">
                                         <div class="flex-none w-24 md:w-36 relative md:p-1">
                                             <a href="/{{ item.id }}">
@@ -60,43 +52,33 @@ eleventyNavigation:
                                                 alt="{{item.title}}" />
                                             </a>
                                         </div>
-                                        <div class="ml-4 md:hidden">
-                                              <span class="flex-auto">
+                                        <div class="ml-4 md:hidden flex flex-col space-y-2">
+                                              <span>
                                                 {{item.title | truncate(70)}}
                                               </span>
-                                              <div class="my-2 text-gray-500">
-                                              This setup has 
-                                                <span 
-                                                 class="{{'font-bold' if item.amz == 0 else 'bg-black text-white p-1'}}">
-                                                 {{ products | length }}</span> products inside
-                                              </div>
                                               <div class="w-full flex-none text-sm text-gray-500 mt-2">
                                                 {{item.date | dateISOtoFormat('DDD') }}
                                               </div>
-                                          <div class="flex-auto flex space-x-3 py-3">
-                                                <a class="p-2 w-full flex items-center justify-center rounded-md bg-blue-100 text-blue-800 font-semibold" href="/{{item.id}}">Setup Details</a>
-                                            </div>
+                                          <div class="w-full py-3">
+                                                <a class="w-full p-2 rounded font-mono text-sm bg-blue-100 text-blue-800 font-semibold" href="/setup/{{item.id}}">{{ products | length }}</span> products inside</a>
+                                        </div>
                                     </div>
-                                        <div class="hidden md:flex md:flex-wrap">          
-                                              <span class="flex-auto text-gray-700">
-                                                {{item.title | truncate(50)}}
-                                              </span>
+                                        <div class="hidden md:flex md:flex-col md:py-2">          
+                                              <p class="flex-auto text-gray-700 font-mono font-bold">
+                                                {{item.title | truncate(100)}}
+                                              </p>
+                                              <p class="tracking-wide uppercase text-xs text-gray-500">
+                                    {{ item.date | dateISOtoFormat('DDD')}} </p>
+                                              </p>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="hidden md:table-cell px-4 py-3 border-b border-black bg-white text-sm">
-                                    <a href="https://reddit.com/u/{{item.author}}" target="_blank" rel="noopener noreferrer" class="text-gray-900 no-underline whitespace-no-wrap">{{ item.author }}</a>
-                                </td>
-                                <td class="hidden md:table-cell px-4 py-3 border-b border-black bg-white text-sm">
-                                    <p class="text-gray-900 whitespace-no-wrap">
-                                    {{ item.date | dateISOtoFormat('DDD')}} </p>
-                                </td>
-                                <td class="hidden md:table-cell px-4 py-3 border-b border-r border-black bg-white text-sm">
-                                    <a  href="/{{item.id}}"
-                                        class="no-underline relative inline-block font-semibold px-4 py-3 {{ 'text-gray-900' if item.amz == 0 else 'text-green-600'  }} leading-tight">
+                                <td class="hidden md:table-cell px-4 py-3">
+                                    <a  href="/setup/{{item.id}}"
+                                        class="no-underline relative inline-block font-semibold px-4 py-3 {{ 'text-gray-900' if item.amz == 0 else 'text-green-800'  }}">
                                         <span aria-hidden
-                                            class="absolute inset-0 {{ 'bg-gray-200' if item.amz == 0 else 'bg-green-200'  }} opacity-50 rounded-full"></span>
-                                        <span class="relative">{{ products | length }} components</span>
+                                            class="absolute inset-0 {{ 'bg-gray-200' if item.amz == 0 else 'bg-green-200'  }} opacity-50 rounded"></span>
+                                        <span class="relative">See all {{ products | length }} products</span>
                                     </a>
                                 </td>
                             </tr>
@@ -105,10 +87,3 @@ eleventyNavigation:
                     </table>
                 </div>
 </div>
-{# 
- 
- 
- comment that will not be printed 
- 
-
- #}

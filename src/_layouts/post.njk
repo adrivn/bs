@@ -1,0 +1,16 @@
+---
+layout: base.njk
+---
+<article 
+    id="{{ title | slug }}" 
+    class="post h-entry" 
+    role="article" 
+    itemscope 
+    itemtype="http://schema.org/BlogPosting" 
+    aria-labelledby="{{ title | slug }}-title" 
+>
+<time datetime="{{ page.date | dateToISO }}" itemprop="datePublished" class="mt-4 text-gray-500 text-s">{{ page.date | dateToFormat("DDD") }}</time>
+<span>{{ content | getReadingTime }} minute read</span>
+<div class="min-h-screen bg-gray-100 py-1 flex flex-col sm:py-2">
+    {{ content | safe }}
+</div>
