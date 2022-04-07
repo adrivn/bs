@@ -5,10 +5,18 @@ eleventyExcludeFromCollections: true
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- for page in collections.all %}
-  {% set absoluteUrl %}{{ site.url }}{{ page.url | url }}{% endset %}
+  {% set absoluteUrl %}{{ meta.url }}{{ page.url | url }}{% endset %}
   <url>
     <loc>{{ absoluteUrl }}</loc>
     <lastmod>{{ page.date | htmlDateString }}</lastmod>
   </url>
 {%- endfor %}
+	{%- for setup in newstations %}
+	{% set setupUrl %}{{ setup.id | absoluteUrl(meta.url+"/setup/") }}{% endset %}
+  <url>
+    <loc>{{ setupUrl }}</loc>
+    <lastmod>{{ setup.date | dateISOtoFormat("yyyy-LL-dd") }}</lastmod>
+  </url>
+	<item>
+  {%- endfor -%}}
 </urlset>
