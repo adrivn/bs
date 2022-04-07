@@ -12,7 +12,7 @@ eleventyExcludeFromCollections: true
 	<pubDate>{{ page.date | dateToRSS }}</pubDate>
 	<webMaster>{{ meta.email }} ({{ meta.author }})</webMaster>
 	{%- for setup in newstations %}
-	{% set absolutePostUrl %}{{ setup.id | absoluteUrl(meta.setupsurl) }}{% endset %}
+	{% set absolutePostUrl %}{{ setup.id | absoluteUrl(meta.url+"/setup/") }}{% endset %}
 	<item>
 		<title>{{ setup.title }}</title>
 		<link>{{ absolutePostUrl }}</link>

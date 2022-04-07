@@ -1,6 +1,6 @@
 const CONTENT_GLOBS = {
     posts: 'src/posts/**/*.md',
-    pages: 'src/notes/*.md'
+    pages: 'src/pages/*.md'
 }
 
 module.exports = {
